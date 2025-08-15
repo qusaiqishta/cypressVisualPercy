@@ -14,7 +14,6 @@ describe('Almosafer Signin Page Visual Testing', () => {
     cy.intercept('GET', 'https://td.doubleclick.net/td/rul/**', { statusCode: 204 });
     cy.intercept('POST', 'https://wa.appsflyer.com/events*', { statusCode: 204 });
 
-    // Visit the signin page before each test
     cy.visit('/en/signin?ncr=1')
     
     // Wait for the page to load completely
