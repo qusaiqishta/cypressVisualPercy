@@ -7,14 +7,21 @@
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "test:visual": "percy exec -- cypress run --spec 'cypress/e2e/percyVisual.cy.js'",
+    "test:visual:report": "percy exec -- cypress run --spec 'cypress/e2e/percyVisual.cy.js' && npx @percy/report --format=html --output=percy-report.html",
     "test": "cypress run"
   },
-  "keywords": ["cypress", "percy", "visual-testing", "e2e"],
+  "keywords": [
+    "cypress",
+    "percy",
+    "visual-testing",
+    "e2e"
+  ],
   "author": "Qusai Qishta",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^14.5.4",
     "@percy/cli": "^1.27.4",
-    "@percy/cypress": "^3.1.2"
+    "@percy/cypress": "^3.1.2",
+    "@percy/report": "^1.0.6",
+    "cypress": "^14.5.4"
   }
 }
