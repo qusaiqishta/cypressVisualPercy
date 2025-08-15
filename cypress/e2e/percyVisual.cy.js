@@ -1,6 +1,5 @@
 describe('Almosafer Signin Page Visual Testing', () => {
   beforeEach(() => {
-    // Handle any uncaught exceptions from the page before visiting
     cy.intercept('GET', 'https://bat.bing.com/bat.js', { statusCode: 204 });
     cy.intercept('GET', 'https://connect.facebook.net/en_US/fbevents.js', { statusCode: 204 });
     cy.intercept('GET', 'https://s.yimg.com/wi/ytc.js', { statusCode: 204 });
