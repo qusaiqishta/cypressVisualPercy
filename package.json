@@ -6,7 +6,7 @@
   "scripts": {
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "test:visual": "percy exec -- cypress run --spec 'cypress/e2e/percyVisual.cy.js'",
+    "test:visual": " percy exec -- cypress run --spec 'cypress/e2e/percyVisual.cy.js'",
     "test": "cypress run"
   },
   "keywords": ["cypress", "percy", "visual-testing", "e2e"],
