@@ -71,40 +71,6 @@
             // Set execution date
             document.getElementById('execution-date').textContent = new Date().toLocaleString();
             
-            // Try to get data from Cypress results if available
-            try {
-                // You can modify these values based on your actual test results
-                const testData = {
-                    totalTests: 3,
-                    passed: 2,
-                    failed: 1,
-                    duration: '45s',
-                    browser: 'Chrome 140 (headless)',
-                    specFile: 'percyVisual.cy.js',
-                    baseUrl: 'https://next-staging.almosafer.com',
-                    viewport: '1920x1080'
-                }
-                
-                // Update the display
-                document.getElementById('total-tests').textContent = testData.totalTests;
-                document.getElementById('passed-tests').textContent = testData.passed;
-                document.getElementById('failed-tests').textContent = testData.failed;
-                document.getElementById('execution-duration').textContent = testData.duration;
-                document.getElementById('browser-info').textContent = testData.browser;
-                document.getElementById('spec-file').textContent = testData.specFile;
-                document.getElementById('base-url').textContent = testData.baseUrl;
-                document.getElementById('viewport-size').textContent = testData.viewport;
-                
-                // Update summary based on results
-                if (testData.failed > 0) {
-                    document.getElementById('summary-title').textContent = '⚠️ Test Execution Summary';
-                    document.getElementById('summary-title').innerHTML = '⚠️ Test Execution Summary';
-                    document.getElementById('summary-message').textContent = `${testData.failed} test(s) failed. Please review the results below.`;
-                }
-                
-            } catch (error) {
-                console.log('Using default test data');
-            }
         });
     </script>
 </body>
