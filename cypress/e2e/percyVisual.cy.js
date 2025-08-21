@@ -1,6 +1,10 @@
-describe('Almosafer Signin Page Visual Testing', () => {
+import { retrieveMyBooking, correctDomStructure } from '../support/helpers';
+import { retrieveBookingPO } from '../support/pageObjects/retrieveBookingPO';
+
+describe('Booking Details Page Visual Testing - Flight - Percy', () => {
+
   beforeEach(() => {
-    // Handle any uncaught exceptions from the page before visiting
+    // Intercept external scripts and analytics to prevent them from affecting visit command
     cy.intercept('GET', 'https://bat.bing.com/bat.js', { statusCode: 204 });
     cy.intercept('GET', 'https://connect.facebook.net/en_US/fbevents.js', { statusCode: 204 });
     cy.intercept('GET', 'https://s.yimg.com/wi/ytc.js', { statusCode: 204 });
@@ -14,19 +18,68 @@ describe('Almosafer Signin Page Visual Testing', () => {
     cy.intercept('GET', 'https://td.doubleclick.net/td/rul/**', { statusCode: 204 });
     cy.intercept('POST', 'https://wa.appsflyer.com/events*', { statusCode: 204 });
 
-    cy.visit('/en/signin?ncr=1')
-    
-    // Wait for the page to load completely
-    cy.get('body').should('be.visible')
-  })
+    cy.visit('/en/myaccount/retrieve-booking?ncr=1')
+  
+  });
 
-  it('should capture visual snapshot of the signin page', () => {
-    // Wait for any dynamic content to load
-    cy.wait(2000)
-    
+  //use same figma snapshot for the first two
+
+  it.only('layout comparison with figma-valid design (present booking with no exclusions)', () => {
+    const currentEmail = 'Qusai.Qishta@almosafer.com';
+    const currentSaleId = 'U2508210148450';
+    retrieveMyBooking(currentEmail, currentSaleId);
+    cy.wait('@retrieveOrder').then((retrieveOrderResponse) => {
+      expect(retrieveOrderResponse.response.statusCode).to.eq(200);
+    })
+    cy.get(retrieveBookingPO.BookingDetails).should('be.visible');
+    correctDomStructure();
     // Take a Percy snapshot of the entire page
-    cy.percySnapshot('Almosafer Signin Page - Full Page',{ 
+    cy.percySnapshot('layout comparison with figma - present booking', { 
       widths: [1440], 
-      minHeight: 720})
-  })
-})
+      minHeight: 720
+    });
+  });
+
+  it('layout comparison with figma (past booking with exclusions)', () => {
+    const currentEmail = 'autocypress@mailinator.com';
+    const currentSaleId = 'U2508120027450';
+    retrieveMyBooking(currentEmail, currentSaleId);
+    // Take a Percy snapshot of the entire page
+    cy.percySnapshot(`Almosafer Booking Page - ${currentSaleId}`, { 
+      widths: [1440], 
+      minHeight: 720
+    });
+  });
+
+  it('layout comparison with figma- outdated figma design (present booking with no exclusions but change in figma design)', () => {
+    const currentEmail = 'Qusai.Qishta@almosafer.com';
+    const currentSaleId = 'U2508210148450';
+    retrieveMyBooking(currentEmail, currentSaleId);
+    // Take a Percy snapshot of the entire page
+    cy.percySnapshot(`Almosafer Booking Page - ${currentSaleId}`, { 
+      widths: [1440], 
+      minHeight: 720
+    });
+  });
+
+  it('content comparison with screenshot of same order(layout + content)', () => {
+    const currentEmail = 'Qusai.Qishta@almosafer.com';
+    const currentSaleId = 'U2508210148450';
+    retrieveMyBooking(currentEmail, currentSaleId);
+    // Take a Percy snapshot of the entire page
+    cy.percySnapshot(`Almosafer Booking Page - ${currentSaleId} (with add on)`, { 
+      widths: [1440], 
+      minHeight: 720
+    });
+  });
+  it('content comparison with screenshot of same order(layout + content) => negative (change the html)', () => {
+    const currentEmail = 'Qusai.Qishta@almosafer.com';
+    const currentSaleId = 'U2508210148450';
+    retrieveMyBooking(currentEmail, currentSaleId);
+    // Take a Percy snapshot of the entire page
+    cy.percySnapshot(`Almosafer Booking Page - ${currentSaleId} (with add on)`, { 
+      widths: [1440], 
+      minHeight: 720
+    });
+  });
+});

@@ -9,7 +9,7 @@ module.exports = {
     `
   },
   discovery: {
-    allowedHostnames: ['next-staging.almosafer.com'],
+    allowedHostnames: ['next-staging.almosafer.com', 'https://www.almosafer.com/'],
     disallowedHostnames: [],
     networkIdleTimeout: 100,
     concurrency: 1
