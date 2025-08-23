@@ -10,6 +10,10 @@ export function retrieveMyBooking(emailAddress, orderNumber) {
   cy.get(retrieveBookingPO.retrieveBooking_emailInput).type(emailAddress);
   cy.get(retrieveBookingPO.retrieveBooking_orderIdInput).type(orderNumber);
   cy.get(retrieveBookingPO.retrieveBooking_continueButton).last().click();
+  cy.wait('@retrieveOrder').then((retrieveOrderResponse) => {
+    expect(retrieveOrderResponse.response.statusCode).to.eq(200);
+  })
+  cy.get(retrieveBookingPO.BookingDetails).should('be.visible');
 }
 
 function watchRetrieveFlightOrderRequestDesk() {

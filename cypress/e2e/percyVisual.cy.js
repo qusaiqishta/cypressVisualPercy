@@ -1,5 +1,4 @@
 import { retrieveMyBooking, correctDomStructure } from '../support/helpers';
-import { retrieveBookingPO } from '../support/pageObjects/retrieveBookingPO';
 
 describe('Booking Details Page Visual Testing - Flight - Percy', () => {
 
@@ -18,24 +17,20 @@ describe('Booking Details Page Visual Testing - Flight - Percy', () => {
     cy.intercept('GET', 'https://td.doubleclick.net/td/rul/**', { statusCode: 204 });
     cy.intercept('POST', 'https://wa.appsflyer.com/events*', { statusCode: 204 });
 
-    cy.visit('/en/myaccount/retrieve-booking?ncr=1')
+    cy.visit('/en/myaccount/retrieve-booking?ncr=1');
   
   });
 
   //use same figma snapshot for the first two
 
-  it.only('layout comparison with figma-valid design (present booking with no exclusions)', () => {
+  it('layout comparison with figma-valid design (present booking with no exclusions)', () => {
     const currentEmail = 'Qusai.Qishta@almosafer.com';
     const currentSaleId = 'U2508210148450';
     retrieveMyBooking(currentEmail, currentSaleId);
-    cy.wait('@retrieveOrder').then((retrieveOrderResponse) => {
-      expect(retrieveOrderResponse.response.statusCode).to.eq(200);
-    })
-    cy.get(retrieveBookingPO.BookingDetails).should('be.visible');
     correctDomStructure();
     // Take a Percy snapshot of the entire page
     cy.percySnapshot('layout comparison with figma - present booking', { 
-      widths: [1440], 
+      widths: [1920], 
       minHeight: 720
     });
   });
@@ -44,9 +39,10 @@ describe('Booking Details Page Visual Testing - Flight - Percy', () => {
     const currentEmail = 'autocypress@mailinator.com';
     const currentSaleId = 'U2508120027450';
     retrieveMyBooking(currentEmail, currentSaleId);
+    correctDomStructure();
     // Take a Percy snapshot of the entire page
-    cy.percySnapshot(`Almosafer Booking Page - ${currentSaleId}`, { 
-      widths: [1440], 
+    cy.percySnapshot('layout comparison with figma - past booking', { 
+      widths: [1920], 
       minHeight: 720
     });
   });
@@ -55,9 +51,10 @@ describe('Booking Details Page Visual Testing - Flight - Percy', () => {
     const currentEmail = 'Qusai.Qishta@almosafer.com';
     const currentSaleId = 'U2508210148450';
     retrieveMyBooking(currentEmail, currentSaleId);
+    correctDomStructure();
     // Take a Percy snapshot of the entire page
-    cy.percySnapshot(`Almosafer Booking Page - ${currentSaleId}`, { 
-      widths: [1440], 
+    cy.percySnapshot('layout comparison with figma- outdated figma design', { 
+      widths: [1920], 
       minHeight: 720
     });
   });
@@ -66,9 +63,10 @@ describe('Booking Details Page Visual Testing - Flight - Percy', () => {
     const currentEmail = 'Qusai.Qishta@almosafer.com';
     const currentSaleId = 'U2508210148450';
     retrieveMyBooking(currentEmail, currentSaleId);
+    correctDomStructure();
     // Take a Percy snapshot of the entire page
-    cy.percySnapshot(`Almosafer Booking Page - ${currentSaleId} (with add on)`, { 
-      widths: [1440], 
+    cy.percySnapshot('baseline-layout-and-content', { 
+      widths: [1920], 
       minHeight: 720
     });
   });
@@ -76,9 +74,12 @@ describe('Booking Details Page Visual Testing - Flight - Percy', () => {
     const currentEmail = 'Qusai.Qishta@almosafer.com';
     const currentSaleId = 'U2508210148450';
     retrieveMyBooking(currentEmail, currentSaleId);
+    correctDomStructure();
+    cy.get('[data-testid="paymentName"]').invoke('remove')
+
     // Take a Percy snapshot of the entire page
-    cy.percySnapshot(`Almosafer Booking Page - ${currentSaleId} (with add on)`, { 
-      widths: [1440], 
+    cy.percySnapshot('baseline-layout-and-content - negative', { 
+      widths: [1920], 
       minHeight: 720
     });
   });
