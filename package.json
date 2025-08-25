@@ -6,7 +6,7 @@
   "scripts": {
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "test:visual": "PERCY_TOKEN=web_1fe522754482c3ed1fc8d4a96aa01dc4972650679ee286eea674dcff35fec98d percy exec -- cypress run --spec 'cypress/e2e/percyVisual.cy.js'",
+    "test:visual": "PERCY_TOKEN=web_08114bb47857fd2ac52c8a2fe739dde47c42f4e14a08322071b13012ab9111a5 percy exec -- cypress run --spec 'cypress/e2e/percyVisual.cy.js'",
     "test:visual:report": "percy exec -- cypress run --spec 'cypress/e2e/percyVisual.cy.js' && npx @percy/report --format=html --output=percy-report.html",
     "test": "cypress run"
   },

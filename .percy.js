@@ -9,13 +9,9 @@ module.exports = {
       /* Hide any dynamic content that might cause flakiness */
       .loading, .spinner { display: none !important; }
     `,
-    // Add settings for flexible image handling
-    imageOptimization: false,
-    // Allow Percy to handle any image dimensions
-    flexibleDimensions: true
   },
   discovery: {
-    allowedHostnames: ['next-staging.almosafer.com', 'https://www.almosafer.com/'],
+    allowedHostnames: ['next-staging.almosafer.com', 'www.almosafer.com'],
     disallowedHostnames: [],
     networkIdleTimeout: 100,
     concurrency: 1

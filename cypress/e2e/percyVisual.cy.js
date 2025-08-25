@@ -21,7 +21,6 @@ describe('Booking Details Page Visual Testing - Flight - Percy', () => {
   
   });
 
-  //use same figma snapshot for the first two
 
   it('layout comparison with figma-valid design (present booking with no exclusions)', () => {
     const currentEmail = 'Qusai.Qishta@almosafer.com';
@@ -29,7 +28,10 @@ describe('Booking Details Page Visual Testing - Flight - Percy', () => {
     retrieveMyBooking(currentEmail, currentSaleId);
     correctDomStructure();
     // Take a Percy snapshot of the entire page
-    cy.percySnapshot('layout comparison with figma - present booking');
+    cy.percySnapshot('layout comparison with figma - present booking', { 
+      widths: [1920], 
+      minHeight: 720
+    });
   });
 
   it('layout comparison with figma (past booking with exclusions)', () => {
@@ -38,7 +40,10 @@ describe('Booking Details Page Visual Testing - Flight - Percy', () => {
     retrieveMyBooking(currentEmail, currentSaleId);
     correctDomStructure();
     // Take a Percy snapshot of the entire page
-    cy.percySnapshot('layout comparison with figma - past booking');
+    cy.percySnapshot('layout comparison with figma - past booking', { 
+      widths: [1920], 
+      minHeight: 720
+    });
   });
 
   it('layout comparison with figma- outdated figma design (present booking with no exclusions but change in figma design)', () => {
@@ -47,7 +52,10 @@ describe('Booking Details Page Visual Testing - Flight - Percy', () => {
     retrieveMyBooking(currentEmail, currentSaleId);
     correctDomStructure();
     // Take a Percy snapshot of the entire page
-    cy.percySnapshot('layout comparison with figma- outdated figma design');
+    cy.percySnapshot('layout comparison with figma- outdated figma design', { 
+      widths: [1920], 
+      minHeight: 720
+    });
   });
 
   it('content comparison with screenshot of same order(layout + content)', () => {
@@ -56,16 +64,22 @@ describe('Booking Details Page Visual Testing - Flight - Percy', () => {
     retrieveMyBooking(currentEmail, currentSaleId);
     correctDomStructure();
     // Take a Percy snapshot of the entire page
-    cy.percySnapshot('baseline-layout-and-content');
+    cy.percySnapshot('baseline-layout-and-content', { 
+      widths: [1920], 
+      minHeight: 720
+    });
   });
   it('content comparison with screenshot of same order(layout + content) => negative (change the html)', () => {
     const currentEmail = 'Qusai.Qishta@almosafer.com';
     const currentSaleId = 'U2508210148450';
     retrieveMyBooking(currentEmail, currentSaleId);
     correctDomStructure();
-    cy.get('[data-testid="paymentName"]').invoke('remove')
+    // cy.get('[data-testid="paymentName"]').invoke('remove')
 
     // Take a Percy snapshot of the entire page
-    cy.percySnapshot('baseline-layout-and-content - negative');
+    cy.percySnapshot('baseline-layout-and-content - negative', { 
+      widths: [1920], 
+      minHeight: 720
+    });
   });
 });
