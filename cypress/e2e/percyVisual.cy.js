@@ -74,7 +74,7 @@ describe('Booking Details Page Visual Testing - Flight - Percy', () => {
     const currentSaleId = 'U2508210148450';
     retrieveMyBooking(currentEmail, currentSaleId);
     correctDomStructure();
-    // cy.get('[data-testid="paymentName"]').invoke('remove')
+    cy.get('[data-testid="paymentName"]').invoke('remove')
 
     // Take a Percy snapshot of the entire page
     cy.percySnapshot('baseline-layout-and-content - negative', { 
