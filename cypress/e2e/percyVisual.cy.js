@@ -12,6 +12,7 @@ describe('Booking Details Page Visual Testing - Flight - Percy', () => {
     const currentEmail = 'Qusai.Qishta@almosafer.com';
     const currentSaleId = 'U2508210148450';
     retrieveMyBooking(currentEmail, currentSaleId);
+    cy.wait(3000);
     correctDomStructure();
     // Take a Percy snapshot of the entire page
     cy.percySnapshot('TC:verify content comparison', { 
@@ -24,8 +25,9 @@ describe('Booking Details Page Visual Testing - Flight - Percy', () => {
     const currentEmail = 'Qusai.Qishta@almosafer.com';
     const currentSaleId = 'U2508210148450';
     retrieveMyBooking(currentEmail, currentSaleId);
+    cy.wait(3000);
     correctDomStructure();
-    cy.get('[data-testid="paymentName"]').invoke('remove');
+    // cy.get('[data-testid="paymentName"]').invoke('remove');
 
     // Take a Percy snapshot of the entire page
     cy.percySnapshot('TC:verify content comparison -- CC details removed', { 
@@ -52,6 +54,7 @@ describe('Booking Details Page Visual Testing - Flight - Percy', () => {
     const currentEmail = 'Qusai.Qishta@almosafer.com';
     const currentSaleId = 'U2508210148450';
     retrieveMyBooking(currentEmail, currentSaleId);
+    cy.wait(3000);
     correctDomStructure();
     // Take a Percy snapshot of the entire page
     cy.percySnapshot('layout comparison with figma- outdated figma design', { 
@@ -60,10 +63,11 @@ describe('Booking Details Page Visual Testing - Flight - Percy', () => {
     });
   });
 
-  it.skip('layout comparison with figma-valid design (present booking with no exclusions)', () => {
+  it('layout comparison with figma-valid design (present booking with no exclusions)', () => {
     const currentEmail = 'Qusai.Qishta@almosafer.com';
     const currentSaleId = 'U2508210148450';
     retrieveMyBooking(currentEmail, currentSaleId);
+    cy.wait(3000);
     correctDomStructure();
     // Take a Percy snapshot of the entire page
     cy.percySnapshot('layout comparison with figma - present booking', { 
